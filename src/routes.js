@@ -11,5 +11,7 @@ routes.get('/health', (req, res) =>{
 routes.post('/games', GameController.store)
 routes.get('/games', GameController.index)
 routes.get('/games/:id', GameController.show)
+routes.put('/games/:id', GameController.update)
+routes.delete('/games/:id', GameController.destroy)
 
 module.exports = routes

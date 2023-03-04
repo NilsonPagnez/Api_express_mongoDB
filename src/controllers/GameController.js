@@ -32,12 +32,35 @@ class GameController {
         
     }
 
-    async update() {
+    async update(req, res) {
+        
+        try{
+            const { id } = req.params
+        
+            await GameModel.findByIdAndUpdate(id, req.body)
 
+            return res.status(200).json({message: "Game atualizado"})
+        }catch(err){
+            return res.status(404).json({message: "falha ao atualizar produto"})
+        }
     }
 
-    async destroy() {
+    async destroy(req, res) {
+        
+        try{
+            const { id } = req.params
+    
+            const gamesDeleted = await GameModel.findByIdAndDelete(id)
+            
+            if(!gamesDeleted) {
+                return res.status(404).json({message: 'Game inexistente'})
+            }
+            return res.status(200).json({message: "Game deletado"})
+            
+        }catch(err){
+            return res.status(404).json({message: 'Falha ao deletar o jogo'})
 
+        }
     }
 }
 
