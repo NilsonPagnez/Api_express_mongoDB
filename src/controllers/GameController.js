@@ -7,12 +7,16 @@ class GameController {
         return res.status(200).json(createdGame)
     }
 
+
+
     async index(req, res) {
         const games = await GameModel.find()
         
         return res.status(200).json( games )
     }
 
+
+    
     async show(req, res) {
         try{
 
